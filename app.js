@@ -2,7 +2,6 @@
 const nombreAmigo = document.getElementById('amigo'); //Campo de entrada para el nombre del amigo
 const listaAmigos = document.getElementById('listaAmigos'); //Lista para mostrar los nombres de los amigos
 const resultadoEspacio = document.getElementById('resultado'); //Donde se mostrara el resultado del sorteo
-const nuevoAmigo = document.createElement('li'); //Elemento de lista
 //QuerySelector -> permite tomar un selector de CSS para manipular su estructura
 const btnSortear = document.querySelector('.button-draw'); // Obtiene el boton "Sortear amigo"
 
@@ -30,8 +29,17 @@ function agregarAmigo() {
     amigos.push(nombre); //Agrega el nombre de un amigo al final del array
 
     //console.log(amigo); //Consola
-    nuevoAmigo.textContent = nombre; //Establece el contenido de texto del elemento de lista con el nombre del amigo
-    listaAmigos.appendChild(nuevoAmigo); //Agrega el nuevo elemento de lista a la lista de amigos
+    //Limpiar la lista existente
+    listaAmigos.innerHTML = '';
+
+    //Actualizar la lista con todos los nombres
+    //forEach para iterar sobre el array amigos
+    amigos.forEach(amigo => {
+        let nuevoAmigo = document.createElement('li');
+        nuevoAmigo.textContent = amigo;
+        listaAmigos.appendChild(nuevoAmigo);
+    });
+
     nombreAmigo.value = ''; //Limpia el campo de entrada después de agregar el nombre
 }
 
@@ -43,13 +51,7 @@ function sortearAmigo() {
       alert('Necesitas al menos dos amigos para el sorteo.'); // Muestra una alerta si hay menos de dos amigos en la lista
       return; // Sale de la funcion si no hay suficientes amigos
     }
-  
-    // Validación para números pares
-    if (amigos.length % 2 !== 0) {
-      alert('Necesitas un número par de amigos para el sorteo.'); // Muestra una alerta si el número de amigos no es par
-      return; //Sale de la funcion si el número de amigos no es par
-    }
-  
+
     let amigosSecretos = []; //Array para almacenar las asignaciones de amigos secretos.
     let indicesDisponibles = []; //Array para almacenar los indices disponibles de amigos.
     

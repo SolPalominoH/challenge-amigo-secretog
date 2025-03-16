@@ -161,3 +161,21 @@ ul {
 .button-draw:hover {
     background-color: var(--color-button-hover);
 }
+
+/*Para dispositivos móviles*/
+@media (max-width: 800px) {
+    .header-banner {
+        flex-direction: column; /* Cambia la dirección del flex a columna */
+        align-items: center; /* Centra los elementos horizontalmente */
+    }
+
+    .main-title {
+        margin-bottom: 20px; /* Agrega espacio entre el título y la imagen */
+    }
+
+    .header-banner img {
+        max-width: 70%; /* Ajusta el ancho máximo de la imagen al 80% del contenedor */
+        height: auto; /* Mantiene la proporción de la imagen */
+    }
+}
+
